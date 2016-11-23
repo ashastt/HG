@@ -2,44 +2,59 @@
 <html>
 <head>
 	<title>Hangman Game</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script src="assets/javascript/script.js"></script>
+<!-- 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">-->
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script src="assets/javascript/game.js"></script>
+	
 </head>
 <body onload="game();">
 
-<H1> HANG MAN GAME </H1>
+<div class="container center-block border" id="wrapper" style="margin-top: 100px;">
+	<div class= "row">
+		<div class="col-md-12" id="header" style="border-bottom: 1px solid #abbce9">
+			<h1> COUNTRIES - HANGMAN GAME</h1>						
+		</div>	
+	<div>
 
-<H1 id="status"></H1>
+	<div class="row">	
+		<div class="col-md-4" style="padding-top: 25px;">
+			<img src="assets/images/hangman6.png" id="hangman" class="img-style">
+		</div>
+		
+		<div class="col-md-8">
+			<div class= "row">	
+				<div class="col-md-12">
+					<h2> Guess the Country <p id="word"></p> </h2>
+				</div>
+			</div>
+			<div class="row">		
+				<div class="col-md-12">
+					<h2> No of Guesses Remaining <span id="chances"></span> </h2> 
+				</div>
+				<div class="col-md-12">	
+					<h2> Letters Already Guessed  <p id="misses"></p> </h2> 
+				</div>
+			</div>			
+			
+		</div>	
 
-<h2>Wins : </h2> <p id="wins">0</p>
-<h2>Losses: </h2> <p id="losses">0</p>
-<h2> Missed letters: </h2> <p id="misses"></p>
-<h2> Correct letters in word: </h2><p id="word"></p>
+	</div>
+	<div class = "row">
+		<div class = "col-md-6 ">
+			<h2 class="bg">Wins : <span id="wins">0</span> </h2> 
+		</div>
+		<div class = "col-md-6">	
+			<h2 class="bg">Losses: <span id="losses">0</span> </h2> 
+		</div>
+	</div>		
 
-
-<script type="text/javascript">
-
-
-
-
-
-//if not, place in strike out list. 
-
-
-//check if letter in the word 
-
-// if right, place in right place of word
-
-//if wrong, place and strike out...
-
-//if all strikes over, hangman
-
-//Reset 
-
-
-
-</script>
+	</div>
+</div>
 
 </body>
 </html>

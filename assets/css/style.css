@@ -1,0 +1,46 @@
+
+
+body{
+	background-image: url("../images/world_map.jpg");
+	background-size:  cover;  
+	background-repeat: no-repeat;
+	font-style: bold;
+	font-family:  Audiowide, "Lucida Console", Monaco, monospace;
+}
+
+#header{
+	color: white;
+	background: #abbce9;
+}
+
+
+/*.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+#wrapper{
+	background-color: #ffffff;
+	width: 700px;
+	margin: 0 auto;
+	font-weight: bold;
+	padding: 10px 20px;
+	color: #abbce9;
+	text-align: center;
+
+}
+
+.border{
+	border: 2px solid #abbce9;
+}
+
+.bg{
+	background: #abbce9;
+	color: white;
+}
+
+.img-style{
+	
+}
+
