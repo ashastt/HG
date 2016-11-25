@@ -28,11 +28,12 @@ body{
 	padding: 10px 20px;
 	color: #abbce9;
 	text-align: center;
+	margin-top: 100px;
 
 }
 
 .border{
-	border: 2px solid #abbce9;
+	/*border: 2px solid #abbce9;*/
 }
 
 .bg{
@@ -41,6 +42,7 @@ body{
 }
 
 .img-style{
+
 	
 }
 
