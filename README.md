@@ -1,2 +1,3 @@
 # Hangman_Game
-The classic guess the word game!
+The classic 'Guess the word' game.
+In this version, the words are limited to Countries of the world.
