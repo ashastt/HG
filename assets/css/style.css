@@ -32,8 +32,8 @@ body{
 
 }
 
-.border{
-	/*border: 2px solid #abbce9;*/
+#content{
+	height: 400px;
 }
 
 .bg{
