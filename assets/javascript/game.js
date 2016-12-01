@@ -1,6 +1,8 @@
-var countries = [ "india", "canada", "mexico", "china", "japan", "maldives", "france",
+var countries = 
+[ "india", "canada", "mexico", "china", "japan", "maldives", "france",
  "germany", "greece", "hungary", "switzerland", "italy", "belgium", "uruguay", 
- "argentina", "singapore", "brazil", "spain", "australia", "russia", "iran", "kenya", "malaysia", "thailand"];
+ "argentina", "singapore", "brazil", "spain", "australia", "russia", "iran", "kenya",
+  "malaysia", "thailand"];
 
 
 var hangmanGame = {
@@ -9,20 +11,18 @@ var hangmanGame = {
 	chances: 6,
 	pickedWord : "",
 	missedLetters: [],
-	// guessedLetters: [],
+	guessedLetters: [],
 
 	initGame: function(){
  		this.missedLetters = [];
-		// this.guessedLetters =[];	
+		this.guessedLetters =[];	
 		this.chances = 6;
 
 	 	getEl("misses").innerHTML = "";
 	 	getEl("word").innerHTML = "";
 	 	getEl("chances").innerHTML = this.chances;
-
-	 	setTimeout('getEl("status").innerHTML = \"Press any Key to get Started!\"', 3000);
-		setTimeout('getEl("status").style.color= \"#abbce9\"', 3000);
-		setTimeout('getEl("hangman").src= \"assets/images/Hangman0.gif\"', 3000);
+		
+		setTimeout('timeOut()', 2000);
 
         this.pickedWord = 
         	countries[(Math.floor(Math.random() * countries.length))];
@@ -52,6 +52,20 @@ var hangmanGame = {
 
  		getEl("word").innerHTML = filledWord;
 
+ 		if(this.guessedLetters.length > 0 && 
+						(this.guessedLetters.indexOf(char) > -1)){
+			getEl("status").innerHTML = 
+				" You have already guessed " + char + "!";
+			getEl("status").style.color = "blue";
+			
+			setTimeout('getEl("status").innerHTML = \"Press any Key to get Started!\"', 2000);
+			setTimeout('getEl("status").style.color= \"#abbce9\"', 2000);	
+
+		}else {
+
+ 			this.guessedLetters.push(char);
+ 		}
+
  		if(filledWord.indexOf("_") == -1){
  			getEl("wins").innerHTML = ++this.wins;
  			getEl("status").innerHTML = 
@@ -70,10 +84,12 @@ var hangmanGame = {
 						(this.missedLetters.indexOf(char) > -1)){
 			getEl("status").innerHTML = 
 				" You have already guessed " + char + "!";
-			getEl("status").style.color = "red";	
+			getEl("status").style.color = "red";
+			sound('beep');	
 			
-			setTimeout('getEl("status").innerHTML = \"Press any Key to get Started!\"', 3000);
-			setTimeout('getEl("status").style.color= \"#abbce9\"', 3000);	
+			setTimeout('getEl("status").innerHTML = \"Press any Key to get Started!\"', 2000);
+			setTimeout('getEl("status").style.color= \"#abbce9\"', 2000);	
+
 		}else{
 
 			var appendPicks = getEl("misses");
@@ -83,14 +99,15 @@ var hangmanGame = {
 			this.missedLetters.push(char);
 			getEl("chances").innerHTML = --this.chances;
 
+			sound('miss');
+
 			getEl("hangman").src = "assets/images/Hangman" + this.missedLetters.length + ".gif";
 
 			if(hangmanGame.chances == 0 || (hangmanGame.missedLetters.length == 6)){
-
+				sound('lost');
 				getEl("status").innerHTML = 
 					"You Lost! Try again!";
-				getEl("status").style.color = "red";
-				sound('lost');
+				getEl("status").style.color = "red";				
 				getEl("hangman").src = "assets/images/Hangman-lose.gif"	
 
 				getEl("losses").innerHTML = ++this.losses;
@@ -104,12 +121,9 @@ var hangmanGame = {
 
 };
 
-function getEl(el){
-	return document.getElementById(el);
-}
 
 function beginGame(){
-	
+
 	hangmanGame.initGame();//initialize the page
 
 	var wordToPlay = hangmanGame.pickedWord;
@@ -123,11 +137,11 @@ function beginGame(){
 			alert("Select a letter between a-z");
 		}	
 			
-
 		console.log("guessedChar =" + guessedChar +"\n Wordtoplay=" + wordToPlay);		
 
 		if(wordToPlay.indexOf(guessedChar) > -1){	
 			hangmanGame.fillInLetters(guessedChar, wordToPlay);
+			sound("right");
 
 		}else{
 			hangmanGame.appendMissedLetters(guessedChar);
@@ -136,13 +150,33 @@ function beginGame(){
 
 }
 
+function getEl(el){
+	return document.getElementById(el);
+}
+
+
 function sound(str){
     var audio = document.createElement("audio");
     if(str ==="win"){
     	audio.src = "assets/sounds/win.wav";
 	}else if(str === "lost"){
 		audio.src = "assets/sounds/lost.wav";
+	}else if(str === "miss"){
+		audio.src = "assets/sounds/error.wav";
+	}else if(str === "start"){
+		audio.src = "assets/sounds/start.mp3";
+	}else if(str === "beep"){
+		audio.src = "assets/sounds/beep.wav";
+	}else if(str === "right"){
+		audio.src = "assets/sounds/correct.wav";
 	}
     audio.play();   
 }
 
+
+function timeOut(){
+	getEl("status").innerHTML = "Press any Key to get Started!";
+	getEl("status").style.color = "#abbce9";
+	getEl("hangman").src = "assets/images/Hangman0.gif";
+	sound("start");
+}
